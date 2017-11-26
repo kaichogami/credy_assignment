@@ -46,16 +46,10 @@ def check_changes(old_df, new_df):
     old_df = old_df.sort_values('IFSC')    
     new_df = new_df.sort_values('IFSC')
     old_df.index = new_df.index
-    #old_df.fillna(value='-1', inplace=True)
-    #new_df.fillna(value='-1', inplace=True)
     new_df.iloc[:, 5] = new_df.iloc[:, 5].astype(float)
-    #print(type(old_df.iloc[0, 5]), type(new_df.iloc[0,5]))
 
     old_df =old_df.applymap(unicode)
     new_df = new_df.applymap(unicode)
-    #print(type(old_df.iloc[0, 5]), type(new_df.iloc[0,5]))
-    #print(assert_frame_equal(old_df, new_df, check_dtype=False))
-    #print(check_df(old_df, new_df))
     if check_df(old_df, new_df):
         return ('no_change', old_df)
     else:
